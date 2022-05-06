@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Calculator</title>
     <link rel="stylesheet" href="styles.css">
     <script src="javascript.js" defer></script>
 </head>
+
 <body>
-    
+    <div class="wrapper">
+        <div class="calculator">
+            <div class="display">
+                <div class="input-box"></div>
+            </div>
+            <div class="keypad">
+                <div class="row">
+                    <div class="numkey" id ="ac" data-key="c">AC</div>
+                    <div class="numkey" id = "del" data-key="backspace">DEL</div>
+                    <div class="operator" data-key="(">(</div>
+                    <div class="operator" data-key=")">)</div>
+                </div>
+
+                <div class="row">
+                    <div class="numkey" data-key="1">1</div>
+                    <div class="numkey" data-key="2">2</div>
+                    <div class="numkey" data-key="3">3</div>
+                    <div class="operator" data-key="+">+</div>
+                    <div class="operator" data-key="^">^</div>
+                </div>
+
+                <div class="row">
+                    <div class="numkey" data-key="4">4</div>
+                    <div class="numkey" data-key="5">5</div>
+                    <div class="numkey" data-key="6">6</div>
+                    <div class="operator" data-key="-">-</div>
+                    <div class="operator" data-key="l">log</div>
+                </div>
+
+
+                <div class="row">
+                    <div class="numkey" data-key="7">7</div>
+                    <div class="numkey" data-key="8">8</div>
+                    <div class="numkey" data-key="9">9</div>
+                    <div class="operator" data-key="*">*</div>
+                    <div class="operator" data-key="s">sin</div>
+                </div>
+
+
+                <div class="row">
+                    <div class="numkey" data-key="0">0</div>
+                    <div class="numkey" data-key=".">.</div>
+                    <div class="operator" id="equals" data-key="enter">=</div>
+                    <div class="operator" data-key="/">/</div>
+                    <div class="operator" data-key="cos">cos</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

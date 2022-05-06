@@ -1,0 +1,93 @@
+.calculator {
+    gap : 3px;
+    display : flex;
+    flex-direction: column;
+    width : 600px;
+    height : 750px;
+    background-color: rgb(36, 36, 36);
+}
+
+.wrapper {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    height : 100vh;
+}
+
+.display {
+    flex : 1;
+    background-color: rgba(248, 248, 255, 0.888);
+    margin : 50px 25px;
+    min-height : 100px;
+
+    overflow : hidden;
+    display : flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+.input-box,
+.result-box {
+    height : 45px;
+    flex : 0 0 auto;
+
+    display : flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding : 2px 20px;
+    font-size : 26px;
+}
+.input-box {
+}
+
+.result-box {
+}
+
+.keypad {
+    flex : 1;
+    margin: 0px 25px 50px;
+    display : flex;
+    flex-direction: column;
+    gap : 10px;
+    min-height : 450px;
+    font-size : 30px;
+}
+
+.row {
+    display : flex;
+    flex : 1;
+    gap : 10px;
+}
+
+.numkey,
+.operator {
+    flex : none;
+    text-align : center;    
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; 
+    width : 100px;
+}
+
+.numkey {
+    background-color: aqua;
+}
+
+.operator {
+    background-color: #32CD32;
+}
+#ac {
+    width : 210px;
+    flex : none;
+}
+
+#equals{
+    background-color: #FF7B36;
+}
+
+#ac,#del {
+    background-color: #DED93E;
+}
+

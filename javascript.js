@@ -205,3 +205,90 @@ function evaluateExpression(expression) {
     if (result === null) return null;
     return result;
 }
+
+
+//----------------------------
+
+function isFunction(text) {
+    if (!(text in operators)) return false;
+    return operators[text].arity === 1;
+}
+
+let displayText = [];
+
+const keys = document.querySelectorAll(".operator,.numkey");
+const display = document.querySelector(".display");
+const inputBox = document.querySelector(".input-box");
+function refreshDisplay() {
+    inputBox.textContent = displayText.join("");
+}
+
+function triggerEqualEvent() {
+    justEqualled = true;
+    const ans = evaluateExpression(displayText.join(""));
+    if (ans === null) {
+        alert("Malformed expression");
+        return;
+    }
+
+    const resultBox = document.createElement('div');
+    resultBox.classList.add("result-box");
+    resultBox.textContent = displayText.join("") + "     =   " + ans;
+    display.insertBefore(resultBox, display.lastElementChild);
+
+    displayText = [ans];
+}
+
+function clearAll() {
+    display.replaceChildren(inputBox);
+    displayText = [];
+}
+
+let justEqualled = false;
+function trigger(key) {
+    const text = key.textContent;
+
+    if (isFunction(text) || isOperand(text) || isOperator(text) || isParanthesis(text) || text === '.') {
+        if (justEqualled === true && isOperand(text)) {
+            displayText = [];
+        }
+        
+        if (justEqualled === true && isFunction(text)) {
+            displayText.splice(0,0,text);
+        } else {
+            displayText.push(text);
+        }
+        if (isFunction(text)) {
+
+            if (justEqualled === true) {
+                displayText.splice(1,0,'(');
+            } else {
+                displayText.push('(');
+            }
+        }
+    } else if (text === '=') {
+        triggerEqualEvent();
+    } else if (text === 'AC') {
+        clearAll();
+    } else if (text === 'DEL') {
+        if (displayText.length > 0) {
+            displayText.pop();
+        }
+    }
+
+    if (text != '=') justEqualled = false;
+
+    refreshDisplay();
+}
+
+document.addEventListener('keydown' , (e) => {
+    keys.forEach((key) => {
+        if (e.key.toLowerCase() === key.dataset.key) {
+            trigger(key);
+        }
+    });
+});
+
+keys.forEach((key) =>
+    key.addEventListener('click', () => trigger(key))
+);
