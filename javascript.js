@@ -29,8 +29,11 @@ function logarithmFactory(base) {
     }
 }
 
-function mySin(x) {
+function sin(x) {
     return Math.sin(x);
+}
+function cos(x) {
+    return Math.cos(x);
 }
 const operators = {
     '+': { "precedence": 1, "arity": 2, "function": add },
@@ -39,8 +42,8 @@ const operators = {
     '/': { "precedence": 2, "arity": 2, "function": divide },
     '^': { "precedence": 3, "arity": 2, "function": exponentiate },
     'log': { "precedence": 10, "arity": 1, "function": logarithmFactory(2) },
-    'sin': { "precedence": 10, "arity": 1, "function": mySin },
-
+    'sin': { "precedence": 10, "arity": 1, "function": sin },
+    'cos' : { "precedence" : 10, "arity" : 1 , "function": cos}
 }
 
 function getOperatorFunction(operator) {
@@ -74,11 +77,12 @@ function sanitize(str) {
     let seenOperand = false;
 
     for (let i of str) {
-        if (isOperand(i)) {
+        if (isOperand(i) || i === ".") {
             operandTotal += i;
         } else {
             if (operandTotal) {
                 if (isNaN(parseFloat(operandTotal))) return null;
+                if (parseFloat(operandTotal).toString() !== operandTotal) return null;
                 result.push(parseFloat(operandTotal));
                 operandTotal = "";
                 seenOperand = true;
@@ -99,6 +103,10 @@ function sanitize(str) {
     }
 
     if (operandTotal) {
+
+        if (isNaN(parseFloat(operandTotal))) return null;
+        if (parseFloat(operandTotal).toString() !== operandTotal) return null;
+        
         result.push(parseFloat(operandTotal));
     }
 
