@@ -16,6 +16,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if (b===0) return null;
     return a / b;
 }
 
@@ -185,6 +186,8 @@ function evaluatePostfixExpression(expression) {
                 arguments.push(stack.pop());
             }
             arguments.reverse();
+
+            if (getOperatorFunction(i)(...arguments) == undefined) return null;
             stack.push(getOperatorFunction(i)(...arguments));
         } else {
             return null;
@@ -225,11 +228,13 @@ function refreshDisplay() {
 
 function triggerEqualEvent() {
     justEqualled = true;
-    const ans = evaluateExpression(displayText.join(""));
+    let ans = evaluateExpression(displayText.join(""));
     if (ans === null) {
         alert("Malformed expression");
         return;
     }
+
+    ans = parseFloat(ans.toFixed(6));
 
     const resultBox = document.createElement('div');
     resultBox.classList.add("result-box");
