@@ -96,6 +96,8 @@ function sanitize(str) {
                     operandTotal += '-';
                     operatorTotal = "";
                 } else {
+                    if (operatorTotal === '(') seenOperand = false;
+                    
                     result.push(operatorTotal);
                     operatorTotal = "";
                 }
